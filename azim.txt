@@ -1,1 +1,6 @@
 Azim Momin
+
+1) The bulk of my web architecture experience comes from the classes I have taken in the past (i.e. Systems and Computer Security) and the internship I had over the summer. I have a little experience writing HTML, CSS, and JavaScript code.
+
+2) Chrome: Developer Tools, Incognito Mode, Ad Blocker, syncing
+   Firefox: Bookmarks and decoupling of google search bar and address bar

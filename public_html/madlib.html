@@ -5,11 +5,38 @@
         <title>Madlib!</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="main.css">
     </head>
     <body>
+    	<img src="MadLibs-Logo.png" id="logo" alt="madlibs">
 		<form id="madlib-input">
-			<p>Please Input your answers below!</p>
-			<!-- inputs... -->
+			<!-- First name entry -->
+			<label class="directionLabel">Enter someone's first name.</label>
+		    </br>
+			<input type="text" name="first-name" value="Patrick"> 
+		    </br>
+		    <!-- Interesting number entry -->
+			<label class="directionLabel">Enter a real number between 0 and 100 you find interesting.</label>
+			</br>
+			<input type="text" name="number" value="13">
+		    </br>
+		    <!-- Spirit animal entry -->
+		    <label class="directionLabel">Choose a spirit animal: </label>
+		    </br>
+		    <input type="radio" name="spiritAnimal" value="Penguin">
+		    <label class="spiritAnimalLabel">Penguin</label>
+		    </br>
+		    <input type="radio" name="spiritAnimal" value="Zebra">
+		   	<label class="spiritAnimalLabel">Zebra </label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="Wolf">
+            <label class="spiritAnimalLabel">Wolf</label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="Elephant">
+            <label class="spiritAnimalLabel">Elephant</label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="Lion">
+            <label class="spiritAnimalLabel">Lion</label>
 		</form>
 		
 		<div id="madlib-output">

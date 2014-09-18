@@ -5,30 +5,206 @@
         <title>Madlib!</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body>
+    	<img src="resources/MadLibs-Logo.png" id="logo" alt="madlibs">
 		<form id="madlib-input">
-			<p>Please Input your answers below!</p>
-			<!-- inputs... -->
+			<!-- First name entry -->
+			<label class="directionLabel">Enter a male's first name.</label>
+		    </br>
+			<input type="text" name="first-name" value="Patrick"> 
+		    </br>
+		    </br>
+		    <!-- Second name entry -->
+		    <label class="directionLabel">Enter a female's first name.</label>
+		    </br>
+			<input type="text" name="second-name" value="Sara"> 
+		    </br>
+		    </br>
+		    <!-- Interesting number entry -->
+			<label class="directionLabel">Enter a positive integer you find interesting.</label>
+			</br>
+			<input type="text" name="number" value="13">
+		    </br>
+		    </br>
+		    <!-- Spirit animal entry -->
+		    <label class="directionLabel">Choose a spirit animal: </label>
+		    </br>
+		    <input type="radio" name="spiritAnimal" value="penguin">
+		    <label class="spiritAnimalLabel">Penguin</label>
+		    </br>
+		    <input type="radio" name="spiritAnimal" value="zebra">
+		   	<label class="spiritAnimalLabel">Zebra </label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="wolf">
+            <label class="spiritAnimalLabel">Wolf</label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="elephant">
+            <label class="spiritAnimalLabel">Elephant</label>
+            </br>
+            <input type="radio" name="spiritAnimal" value="lion">
+            <label class="spiritAnimalLabel">Lion</label>
+            </br>
+            </br>
+            <!-- Ice cream flavors entry -->
+            <label class="directionLabel">Choose ice cream flavor(s) that you like.</label>
+            </br>
+            <input type="checkbox" name="iceCreamFlavor" value="chocolate">
+            <label class="iceCreamFlavorLabel">Chocolate</label>
+            </br>
+            <input type="checkbox" name="iceCreamFlavor" value="vanilla">
+            <label class="iceCreamFlavorLabel">Vanilla</label>
+            </br>
+            <input type="checkbox" name="iceCreamFlavor" value="strawberry">
+            <label class="iceCreamFlavorLabel">Strawberry</label>
+            </br>
+            <input type="checkbox" name="iceCreamFlavor" value="pecan">
+            <label class="iceCreamFlavorLabel">Pecan</label>
+            </br>
+            </br>
+            <!-- Attacked by entry -->
+            <label class="directionLabel">Choose a creature.</label>
+            </br>
+            <select name="creature" id="creature">
+            	<option>zombies</option>
+            	<option>sharks</option>
+            	<option>vampires</option>
+            	<option>spiders</option>
+            </select>
+            </br>
+            </br>
+            <!-- Adjective entry -->
+		    <label class="directionLabel">Choose an adjective: </label>
+		    </br>
+		    <input type="radio" name="adjective">
+		    <label class="spiritAnimalLabel">gangsta</label>
+		    </br>
+		    <input type="radio" name="adjective" value="wobbly">
+		   	<label class="spiritAnimalLabel">wobbly </label>
+            </br>
+            <input type="radio" name="adjective" value="stinky">
+            <label class="spiritAnimalLabel">stinky</label>
+            </br>
+            <input type="radio" name="adjective" value="glamorous">
+            <label class="spiritAnimalLabel">glamorous</label>
+            </br>
+            <input type="radio" name="adjective" value="thirsty">
+            <label class="spiritAnimalLabel">thirsty</label>
+            </br>
+            </br>
+            <!-- Submit -->
+            <input type="submit" value="My MadLib!">
+            </br>
+            </br>
 		</form>
 		
 		<div id="madlib-output">
 		</div>
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- Optionally include other scripts
         <script src="js/main.js"></script>
 		-->
 
         <!-- You may add Javascript functions below -->
         <script>
-			function validate() {
-				if ($("input:first").val() == "correct") {
-					$("#madlib-output").text("input: correct");
-				} else {
-					alert("Error!");
-				}
-				return false;
+	  function validate() {
+                var spiritAnimalChecked = false;
+                var adjectiveChecked = false;
+                var creatureSelected = false;
+                var flavorCount = 0;
+                var outputText = "";
+                var first = "";
+                var second = "";
+                var number = "";
+                var animal = "";
+                var adj = "";
+                var flavors = [];
+                var creature = "";
+                var elements = document.getElementById("madlib-input").elements;
+                for (var i = 0; i < elements.length; i += 1) {
+                    var element = elements[i];
+                    if (element.type == "text") {
+                        if (element.value == "" || element.value == null) {
+                            alert("Error! There is a blank text entry.");
+                            return false;
+                        }
+                        if (element.name == "first-name") {
+                            first = element.value;
+                        } else if ( element.name == "second-name") {
+                            second = element.value;
+                        }
+                        if (element.name == "number") {
+                            var v = element.value;
+                            for (var j = 0; j < v.length; j += 1) {
+                                if (v.charAt(j) >= 0 && element.value.charAt(j) <= 9) {
+                                    
+                                } else {
+                                    alert("Error! Invalid number.");
+                                    return false;
+                                }
+                            }
+                            number = element.value;
+                        }
+                    } else if (element.type == "radio") {
+                        if (element.name == "spiritAnimal" && element.checked) {
+                            spiritAnimalChecked = true;
+                            animal = element.value;
+                        }
+                        if (element.name == "adjective" && element.checked) {
+                            adjectiveChecked = true;
+                            adj = element.value;
+                        }
+                    } else if (element.type == "checkbox") {
+                        if (element.name == "iceCreamFlavor" && element.checked) {
+                            flavorCount += 1;
+                            flavors.push(element.value);
+                        }
+                    } else if (element.name == "creature") {
+                        if (element.selectedIndex >= 0) {
+                            creatureSelected = true;
+                            creature = element.value;
+                        }
+                    }
+                }
+                if (flavorCount == 0) {
+                    alert("Error! There are no checked checkboxes.")
+                    return false;
+                } else if (!spiritAnimalChecked) {
+                    alert("Error! No spirit animal was selected.");
+                    return false;
+                } else if (!adjectiveChecked) {
+                    alert("Error! No adjective was selected.");
+                    return false;
+                } else if (!creatureSelected) {
+                    alert("Error! No creature selected.")
+                    return false;
+                }
+
+                outputText = first + " came thumping through the woods with wild eyes. ";
+                outputText += "In his hysteria, he almost ran over " + second + ". ";
+                outputText += "\"Watch where you're going you big freak!\", she exclaimed. ";
+                outputText += "As soon as the screams finished leaving her mouth, she saw the huge bulge on " + first + ". ";
+                outputText += "It must have been at least " + number + ".5 times bigger than the average bump. ";
+                outputText += second + " concluded that " + first + " must have fallen somewhere. "
+                outputText += "She went and got a few of his favorite flavored ice cream: ";
+                for (var i = 0; i < flavors.length; i += 1) {
+                    outputText += flavors[i];
+                    if ((i + 1) < flavors.length) {
+                        outputText += ", ";
+                    }
+                }
+                outputText += " and rocky road. ";
+                outputText += "All of a sudden a dozen " + creature + " attacked her! "
+                outputText += second + " threw the ice cream at them, got on her magical " + animal + ", and booked it out of there."
+				$("#madlib-output").text(outputText);
+                /*if ($("input:first").val() == "correct") {
+                    $("#madlib-output").text("input: correct");
+                } else {
+                    alert("Error!");
+                }*/
+                return false;
 			}
 
 			$(document).ready(function() {

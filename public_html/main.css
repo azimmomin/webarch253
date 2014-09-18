@@ -9,3 +9,8 @@
 .directionLabel {
 	font-weight: bold;
 }
+
+#madlib-output {
+	width: 800px;
+	height: 400px;
+}

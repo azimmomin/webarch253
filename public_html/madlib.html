@@ -77,7 +77,7 @@
             <!-- Adjective entry -->
 		    <label class="directionLabel">Choose an adjective: </label>
 		    </br>
-		    <input type="radio" name="adjective">
+		    <input type="radio" name="adjective" value="gangsta">
 		    <label class="spiritAnimalLabel">gangsta</label>
 		    </br>
 		    <input type="radio" name="adjective" value="wobbly">
@@ -197,7 +197,7 @@
                 }
                 outputText += " and rocky road. ";
                 outputText += "All of a sudden a dozen " + creature + " attacked her! "
-                outputText += second + " threw the ice cream at them, got on her magical " + animal + ", and booked it out of there."
+                outputText += second + " threw the ice cream at them, got on her " + adj + " " + animal + ", and booked it out of there."
 				$("#madlib-output").text(outputText);
                 /*if ($("input:first").val() == "correct") {
                     $("#madlib-output").text("input: correct");

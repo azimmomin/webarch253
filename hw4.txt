@@ -1,0 +1,9 @@
+1)
+    i) return code: 200
+    ii) return code: 302
+        - GET http://en.wikipedia.org
+    iii) return code: 200
+2) Your browser sends a GET request for http://people.ischool.berkeley.edu/~azimmomin/server/wiki to the server.
+   The server sends back a 302 (redirect) message.
+   Your browser uses the redirect link to load the html of the http://end.wikipedia.org website.
+3) return code: 404

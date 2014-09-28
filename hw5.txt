@@ -1,9 +1,29 @@
 Azim Momin
 
-1)
+1) GET /home?name=Azim%20Momin&title=Web%20Architecture
+   Host: people.ischool.berkeley.edu
 
-2)
+2) PUT /wiki HTTP/1.1
+   Host: people.ischool.berkeley.edu
+   Content-Length: 21
+   Content-Type: application/x-www-form-urlencoded
 
-3)
+   url=http://disney.com
+
+   - You can verify this by going to:
+     people.ischool.berkeley.edu/~<USER>/server/wiki and
+     making sure you get redirected to the right page,
+     or you can call the get request:
+     GET /wiki HTTP/1.1
+     Host: people.ischool.berkeley.edu
+
+     and make sure that the link returned is correct.
+
+3) POST /wiki HTTP/1.1
+   Host: people.ischool.berkeley.edu
+   Content-Length: 28
+   Content-Type: application/x-www-form-urlencoded
+
+   url=https://www.facebook.com
 
 4)

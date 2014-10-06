@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{ title }}</title>
-		<link rel="stylesheet" href="static/css/default.css">
+		<link rel="stylesheet" href="../static/css/default.css">
 	</head>
 	<body>
 		<!--
@@ -11,28 +11,61 @@
 			Hello {{ name }}
 		</div>
 		-->
-		<div id="titleContainer">
+		<div id="displayContainer">
 			<h1>SHoRT</h1>
 			<h3>For the lazy, by the lazy</h3>
+			<form id="user-input">
+				<!-- Long link text field -->
+				<label> Enter link you would like to shorten </label>
+				<br>
+				<input type=text id="long-link">
+				<br>
+				<br>
+				<!-- Short link text field -->
+				<label> Enter what you want above link to shorten to </label>
+				<br>
+				<input type=text id="short-link">
+				<!--
+				<input type=button id="random" value= Random>
+				-->
+				<br>
+				<br>
+				<input type=submit value="Shorten!">
+				<br>
+			</form>
+			<div id="successMsgContainer">
+				<!-- Will display success or failure. -->
+			</div>
+			<div id="explanationContainer">
+				<p> If you don't know what any of this is, checkout
+				<a href="https://bitly.com" target="_blank">bitly</a> <br>
+				We basically do the same thing!
+			</p>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script>
+				function validate() {
+					var element = document.getElementById("short-link");
+					if (element.value != "") {
+						val = element.value;
+						for (var j = 0; j < val.length; j += 1) {
+							c = val.charAt(j);
+							if ( (c < 65 || c > 122) ||  (c > 90 && c < 97)) {
+								$("#successMsgContainer").text("Failure!");
+								return false;
+							}
+						}
+						$("#successMsgContainer").text("Success!");
+					} else {
+						$("#successMsgContainer").text("Failure!");
+					}
+					return false;
+				}
+				$(document).ready(function() {
+					$("#user-input").submit(validate);
+					console.log("ready!");
+				});
+			</script>
+			</div>
 		</div>
-		<form id="user-input">
-			<!-- Long link text field -->
-			<label> Enter link you would like to shorten </label>
-			</br>
-			<input type=text id="long-link">
-			</br>
-			</br>
-			<!-- Short link text field -->
-			<label> Enter what you want above link to shorten to </label>
-			</br>
-			<input type=text id="short-link">
-			<!--
-			<input type=button id="random" value= Random>
-			-->
-			</br>
-			</br>
-			<input type=submit value="Shorten!">
-			</br>
-		</form>
 	</body>
 </html>

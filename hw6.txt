@@ -37,5 +37,6 @@ Azim Momin
 	derwiki
 	zonca
 
-4)  curl "https://api.github.com/repos/jblomo/webarch253/commits" | less
-	"front end slides"
+4)  curl "https://api.github.com/repos/jblomo/webarch253/commits?until=2012-08-23T00:00:00-09:00" | less
+
+	"initial"

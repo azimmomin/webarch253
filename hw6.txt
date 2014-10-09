@@ -1,0 +1,42 @@
+Azim Momin
+
+1) curl "https://api.github.com/users/jblomo"
+   39 public repos.
+
+2) curl "https://api.github.com/users/jblomo/repos" | less
+   30 repositories 
+
+3) curl "https://api.github.com/repos/Yelp/mrjob/contributors" | less
+	davidmarin
+	irskep
+	sudarshang
+	tarnfeld
+	anusha-r
+	ashkop
+	icio
+	msabramo
+	ddehghan
+	dnephin
+	ewencp
+	Roguelazer
+	ShusenLiu
+	timtadh
+	jblomo
+	PhilSwanson
+	smallredbeanymilki
+	ap-ensighten
+	bretthoerner
+	unshift
+	geota
+	dterror
+	servetus
+	kienpham2000
+	baris
+	iph
+	t2y
+	derwiki
+	zonca
+
+4)  curl "https://api.github.com/repos/jblomo/webarch253/commits?until=2012-08-23T00:00:00-09:00" | less
+
+	"initial"

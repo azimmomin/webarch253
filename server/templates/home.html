@@ -2,7 +2,7 @@
 <html lang="en-us">
 	<head>
 		<meta charset="utf-8">
-		<title>{{ title }}</title>
+		<title>SHoRT</title>
 		<link rel="stylesheet" href="../static/css/default.css">
 	</head>
 	<body>
@@ -18,24 +18,23 @@
 				<!-- Long link text field -->
 				<label> Enter link you would like to shorten </label>
 				<br>
-				<input type=text id="long-link">
+				<input type=text id="long-link" name="url" required>
 				<br>
 				<br>
 				<!-- Short link text field -->
 				<label> Enter what you want above link to shorten to </label>
 				<br>
-				<input type=text id="short-link">
+				<input type=text id="short-link" name="short" required onkeyup="validate()">
 				<!--
 				<input type=button id="random" value= Random>
 				-->
 				<br>
 				<br>
-				<input type=submit value="Shorten!">
+				<input type=submit value="Shorten!" id="submitBtn">
 				<br>
 			</form>
-			<div id="successMsgContainer">
-				<!-- Will display success or failure. -->
-			</div>
+			<!--<div id="successMsgContainer">
+			</div> -->
 			<div id="explanationContainer">
 				<p> If you don't know what any of this is, checkout
 				<a href="https://bitly.com" target="_blank">bitly</a> <br>
@@ -43,26 +42,25 @@
 			</p>
 			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 			<script>
+				// Checks if input for short-link is correct.
 				function validate() {
-					var element = document.getElementById("short-link");
-					if (element.value != "") {
-						val = element.value;
-						for (var j = 0; j < val.length; j += 1) {
-							c = val.charAt(j);
-							if ( (c < 65 || c > 122) ||  (c > 90 && c < 97)) {
-								$("#successMsgContainer").text("Failure!");
-								return false;
-							}
-						}
-						$("#successMsgContainer").text("Success!");
+					var regex = "^[a-zA-Z]+$"
+					var val = document.getElementById("short-link").value;
+					// input is correct, re-enable submit button.
+					if (val.match(regex) != null) {
+						$('input[type=submit]').removeAttr('disabled');
 					} else {
-						$("#successMsgContainer").text("Failure!");
+						$('input[type=submit]').attr('disabled', 'disabled');
 					}
-					return false;
+				}
+				// This is where we will send the POST request to Flask.
+				function sendPostReq() {
+
 				}
 				$(document).ready(function() {
-					$("#user-input").submit(validate);
-					console.log("ready!");
+					// initially disable submit button until we get correct input.
+					$('input[type=submit]').attr('disabled', 'disabled');
+					$("#user-input").submit(sendPostReq);
 				});
 			</script>
 			</div>

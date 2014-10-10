@@ -77,6 +77,21 @@ def i253():
     # resp.headers['Content-Type'] = '...'
 
     return resp
+###
+# shorts Resource:
+# Associates and the specified url with a shortened link.
+# Returns the association on success.
+###
+@app.route('/shorts' methods = ['POST', 'GET'])
+def handle_short():
+    if (request.method == 'POST'):
+        link = request.form['url']
+        short = request.form['short']
+        db[short] = link
+        message = "Stored " + short + " as: " + link
+        return message
+    elif (request.method == 'GET'):
+        # implement GET logic.
 
 
 if __name__ == "__main__":

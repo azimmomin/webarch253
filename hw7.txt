@@ -16,7 +16,7 @@ output:
 	m.sfo1.yelp.com has address 199.255.189.34
 	m.sfo1.yelp.com has address 199.255.189.234
 
-3) No the don't leave the Berkeley network.
+3) No we don't leave the Berkeley network.
 input:
 	traceroute amplab.cs.berkeley.edu
 

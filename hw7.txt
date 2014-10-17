@@ -2,9 +2,9 @@ Azim Momin
 
 1) 
 input:
-host -v -t A m.yelp.com 199.7.83.42
-host -v -t A m.yelp.com 192.5.6.30
-host -v -t A m.yelp.com 208.78.70.18
+host -v -t A m.yelp.com 199.7.83.42 (which output 192.5.6.30)
+host -v -t A m.yelp.com 192.5.6.30 (which output 208.78.70.18)
+host -v -t A m.yelp.com 208.78.70.18 (which output wikipedia)
 
 2) 
 input:

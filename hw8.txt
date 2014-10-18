@@ -1,0 +1,4 @@
+Azim Momin
+
+We note the size difference, 20 kb for the compressed vs 120 kb for the uncompressed.
+The other thing we note is that the compressed file is represented in hexadecimal.

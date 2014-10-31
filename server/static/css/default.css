@@ -23,13 +23,14 @@ h3 {
 	margin-left: 0px;
 }
 
-#successMsgContainer {
+#submitBtn {
+	font-weight: bold;
 }
-
 #displayContainer {
 	width: 780px;
 	margin: 0 auto;
 	text-align: center;
 }
 #explanationContainer {
+	font-style: italic;
 }

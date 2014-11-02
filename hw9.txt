@@ -1,0 +1,18 @@
+Azim Momin
+
+SELECT
+1) SELECT * from links WHERE created > '2014-10-14';
+   7 links added after 2014-10-14
+2) SELECT * from links WHERE created < '2014-10-14' and hit_count < 40;
+   4 links added before 2014-10-14 with a hit_count < 40 
+
+INSERT
+1) INSERT into links VALUES("http://disney.com", "disne", 50, CURDATE());
+2) No, the Atomocity property guarantees that all updates are "all or nothing"
+   in that either they go to completion before another access, or they don't
+   happen at all.
+
+UPDATE
+1) UPDATE links SET hit_count = hit_count + 1 WHERE long_url = 'http://disney.com';
+   SELECT * links where long_url = 'http://disney.com' 
+       ==> hit_count = 51

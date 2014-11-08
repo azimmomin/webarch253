@@ -1,9 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
-        <title>Azim's Page</title>
-    </head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta description = "Azim Momin">
+        <title>Azim Momin</title>
+        <link rel="stylesheet" type="text/css" href="css/background.css">
+	</head>
     <body>
-        <p>Hello class! This is a tiny HTML page.</p>
+        <!-- The following list is the navigation bar at the top of the screen -->
+    	<div id="navContainer">
+            <ul class="navBar">
+                <li class="navItem"><a href="http://people.ischool.berkeley.edu/~azimmomin/webarch2014/index.html" class="smoothScroll">Home</a></li>
+                <li class="navItem"><a href="http://people.ischool.berkeley.edu/~azimmomin/webarch2014/music.html" class="smoothScroll">Music</a></li>
+		        <li class="navItem"><a href="http://people.ischool.berkeley.edu/~azimmomin/webarch2014/madlib.html" class="smoothScroll">MadLib</a></li>
+            </ul>    
+            <br class="clearLeft" />
+        </div>
+        <div id="textContainer" itemtype = "https://schema.org/Person" itemscope="">
+            <h1>Welcome!</h1>
+                <h2> Who am I?</h2>
+                <h4> I'm nobody special, but here is a cheat sheet to refer to: </h4>
+                <ul>
+                    <li itemprop="name"> My name is Azim Momin</li>
+                    <li itemprop="birthdate"> I was born on December 8, 1992 </li>
+                    <li itemprop="nationality"> I was born and raised in Texas, USA</li>
+                    <li itemprop="memberOf"> I'm a member of GameCraft at UC Berkeley </li>
+                </ul>
+                <h2> Why'd I make this lame website? </h2>
+                <h4> There are a few reasons. Here they are from most to least important: </h4>
+                <ul>
+                    <li> I really like web design and this is my first real try at it. </li>
+                    <li> I wanted to share my music tastes with people. </li>
+                    <li> It was an assignment for a class. </li>
+                </ul>
+                <h2> What do I do?</h2>
+                <p itemprop="jobTitle"> I study CS by day and am a superhero by night.</p>
+                <h2> Wait. What's CS? Where do you study? STOP BEING SO VAGUE. </h2>
+                <h4>Yea sorry about that. Here are more specific answers to your questions:</h4>
+                    <ul>
+                        <li> Computer Science</li>
+                        <li itemprop="affiliation"> University of California, Berkeley </li>
+                    </ul>
+                <h2> So CS huh? What have you been doing with that? </h2>
+                    <ul itemtype="https://schema.org/Organization" itemscope="">
+                        <li itemprop = "name"> I worked at Invensense </li>
+                        <li itemprop = "location"> San Jose, CA </li>
+                        <li>
+                            <a href="http://www.invensense.com" itemprop="url">Check them out</a>
+                        </li>
+                        <li itemprop = "description"> I helped optimize and create application features. </li>
+                        <li itemprop = "aggregateRating">4/5 stars</li>
+                        <li 
+                    </ul>
+                <h2>What should you do?</h2>
+                <h4> Click on the music tab above, pick a song, kick back, and enjoy!</h4>
+                <h3> Disclaimer: You may hate my music taste. </h3>
+        </div>
+        <!-- Create another div for occupational stuff -->
     </body>
 </html>

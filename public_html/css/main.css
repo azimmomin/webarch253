@@ -1,0 +1,16 @@
+#logo {
+	width: 600px;
+	height: 300px;
+	display:block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.directionLabel {
+	font-weight: bold;
+}
+
+#madlib-output {
+	width: 800px;
+	height: 400px;
+}

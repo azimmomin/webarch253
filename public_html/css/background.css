@@ -1,0 +1,53 @@
+body {
+	/* load and configure background image */
+	background: url("../resources/background1.jpg") no-repeat center center fixed;
+	-webkit-background-size: 100% auto;
+	-moz-background-size: 100% auto;
+	-ms-background-size: 100% auto;
+	-o-background-size: 100% auto;
+	background-size: 100% auto;
+	text-align: right;
+    color: black;
+}
+
+/* Adding backgroud color to nav bar */
+.smoothScroll {
+    display: block;
+    width: 300px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #645188;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+/* Change color when hovering over item in nav bar */
+a:hover, a:active {
+    background-color: #528881;
+}
+
+.navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.navItem {
+    display:inline-block;
+}
+
+#navContainer {
+	text-align: center;
+}
+
+#textContainer {
+    width: 540px;
+    float: right;
+    padding-left: 5px;
+    text-align: left;
+    border: 4px solid;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #888888;
+}

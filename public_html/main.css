@@ -1,18 +1,63 @@
+
+#contentBox {
+	opacity: 0.8;
+	background-color: blue;
+	position:fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	text-align: center;
+}
+/*Change background color in javascript */
 #column1 {
-	float:left; 
-	margin:0; 
-	width:33%;
+	float: left;
+	text-align: center;
+	width: 33.3%;
+	height: 100%;
+	min-height: 33.3%;
 }
 
 #column2 {
-	float:left; 
-	margin:0; 
-	width:33%;
+	float: left;
+	text-align: center;
+	width: 33.3%;
+	max-width: 50%;
+	height: 100%;
+	min-height: 33.3%;
 }
 
 #column3 {
-	float:left; 
-	margin:0; 
-	width:33%;
+	float: left; 
+	width: 33.3%;
+	max-width: 100%;
+	height: 100%;
+	min-height: 33.3%;
 }
 
+/*table {
+	width: 100%;
+	height: 100%;
+}
+
+th {
+    float: left;
+    width: 33%;
+    height: 100%
+}
+
+#firstCol {
+	background-color: red;
+	color: black;
+}
+
+#secondCol {
+	background-color: yellow;
+	color: black;
+}
+
+#thirdCol {
+	background-color: blue;
+	color: black;
+}*/

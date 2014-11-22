@@ -1,16 +1,5 @@
-"""Find Vroots with more than 400 visits.
-
-This program will take a CSV data file and output tab-seperated lines of
-
-    Vroot -> number of visits
-
-To run:
-
-    python top_pages.py anonymous-msweb.data
-
-To store output:
-
-    python top_pages.py anonymous-msweb.data > top_pages.out
+"""
+See sorted_title_words.out for answers.
 """
 
 from mrjob.job import MRJob
@@ -30,8 +19,7 @@ class TopPages(MRJob):
         is more than 400, yield the results"""
         total = sum(visit_counts)
                 # How do we calculate the total visits from the visit_counts?
-        if total > 400:
-            yield vroot, total
+        yield vroot, total
                   # What  Key, Value  do we want to output?
         
 if __name__ == '__main__':

@@ -1,9 +1,38 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Azim's Page</title>
+      <meta name="viewport" content="user-scalable=yes, width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="main.css">
+        <title>Azim's Mobile Page</title>
     </head>
     <body>
-        <p>Hello class! This is a tiny HTML page.</p>
+		<div id="contentBox">
+			<div id="column1">
+				<img src="cat1.jpeg" alt="Cute Cat" class="catPics">
+			</div>
+			<div id="column2">
+				<img src="cat2.jpg" alt="Cute Cat 2" class="catPics">
+			</div>
+			<div id="column3">
+				<img src="cat3.jpeg" alt="Cute Cat 3" class="catPics">
+			</div>
+		</div>
+		<script>
+			var c1 = document.getElementById('column1');
+			var c2 = document.getElementById('column2');
+			var c3 = document.getElementById('column3');
+			c1.addEventListener('touchstart', function(event) {
+				this.style.backgroundColor = 'red';
+				this.style.visibility = "visible";
+			});
+			c2.addEventListener('touchstart', function(event) {
+				this.style.backgroundColor = 'green';
+				this.style.visibility = "visible";
+			});
+			c3.addEventListener('touchstart', function(event) {
+				this.style.backgroundColor = 'yellow';
+				this.style.visibility = "visible";
+			});
+		</script>
     </body>
 </html>

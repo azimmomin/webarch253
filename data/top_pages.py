@@ -22,16 +22,16 @@ class TopPages(MRJob):
         """Extracts the Vroot that was visited"""
         cell = csv_readline(line)
         if cell[0] == 'V':
-            yield ### FILL IN
+            yield cell[1], 1
                   # What  Key, Value  do we want to output?
 
     def reducer(self, vroot, visit_counts):
         """Sumarizes the visit counts by adding them together.  If total visits
         is more than 400, yield the results"""
-        total = ### FILL IN
+        total = sum(visit_counts)
                 # How do we calculate the total visits from the visit_counts?
         if total > 400:
-            yield ### FILL IN
+            yield vroot, total
                   # What  Key, Value  do we want to output?
         
 if __name__ == '__main__':

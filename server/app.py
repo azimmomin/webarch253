@@ -9,8 +9,20 @@ from os import environ
 app = flask.Flask(__name__)
 app.debug = True
 
+# 'short_link' -> 'link_to_playlist'
 db = shelve.open("shorten.db")
+# 'genre' -> [index of next playlist to deliver, playlist1, playlist2, playlist3]
+genre_db = shelve.open("genre.db")
+# 'link_to_playlist' -> [nextIndex, numSkips, song1, song2, song3]
+playlist_db = shelve.open("playlists.db")
 
+initializedb();
+
+def initializedb():
+    # put key -> value mappings in db
+    # for genre in music folder: genre_db['genre'] = [1, playlist1_name, playlist2_name]
+    # for playlist in genre folder: playlist_db['link_to_playlist'] = [3, 0, song1_name, song2_name]
+    # ----------- 'link_to_playlist' refers to http://people.ischool.berkeley.edu/~azimomin/server/music/genre_name/playlist_name
 
 ###
 # Home Resource:
@@ -84,29 +96,61 @@ def i253():
 ###
 @app.route('/shorts', methods=['POST'])
 def handle_short_post():
-    link = str(request.form['url'])
-    short = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + str(request.form['short'])
+    genre = str(request.get['search'])
+    link = link_to_playlist(genre)
+    short = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + str(request.get['short'])
+    if (db[short] != None) :
+        resp = flask.make_response("404: This short url is already in use.",404);
+        return resp 
     db[short] = link
-    message = "Associated " + short + " with: " + link
+    first_song = link + playlist_db[link][2]
+    message = link + "," + first_song
     return message
+    #Get request with keyword, --- key: short url value: [playlist, current index]
+    #SKIP, NEXT --- SKIP curr_index+=1 num_skips+=1, NEXT curr_index+=1; send playlist[curr_index]
+def link_to_playlist(genre):
+    link = "http://people.ischool.berkeley.edu/~azimomin/server/music/" + genre + "/"
+    playlists = genre_db[genre]
+    current = playlists[0]
+    playlist_name = playlists[current]
+    if current == playlists.length:
+        current = 1
+    else
+        current += 1
+    playlists[0] = current
+    #increment count and store modified array in genre_db
+    genre_db[genre] = playlists
+    link_to_playlist = link + playlist_name
+    return link_to_playlist
+
 @app.route('/shorts/<short_link>', methods=['GET'])
 def handle_short_get(short_link):
     # implement GET logic.
+    isSkip = bool(request.get(skipped))
     short = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + str(short_link)
-    destination = db.get(short) #needs to return 404
-    if (destination == None):
-        resp = flask.make_response("404: No url is associated with this short url",404);
+    link = db.get(short) #needs to return 404
+    if (link == None):
+        resp = flask.make_response("404: No playlist is associated with this short url",404);
         return resp
-    app.logger.debug("Redirecting to " + destination)
-    corrected_dest = correctURL(destination)
-    return flask.redirect(corrected_dest)
+    playlist = playlist_db[link]
+    if (isSkip):
+        #increment numSkip count
+        numSkips = playlist[1]
+        numSkips += 1
+        #store numSkip count
+        playlist_db[link][1] = numSkips
+    #get next song
+    index = playlist[0]
+    song_name = playlist[index]
 
-def correctURL(destination):
-    if (destination[0:8] == "https://"):
-        return destination
-    elif (destination[0:7] == "http://"):
-        return destination
-    return "http://" + destination
+    #increment and store index for song to be played after
+    index += 1
+    playlist_db[link][0] = index
+    
+    #return next song
+    song_link = link + song_name
+    return song_link
 
 if __name__ == "__main__":
-    app.run(port=int(environ['FLASK_PORT']))
+    app.run(port=int(environ['63048']))
+

@@ -77,7 +77,36 @@ def i253():
     # resp.headers['Content-Type'] = '...'
 
     return resp
+###
+# shorts Resource:
+# Associates and the specified url with a shortened link.
+# Returns the association on success.
+###
+@app.route('/shorts', methods=['POST'])
+def handle_short_post():
+    link = str(request.form['url'])
+    short = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + str(request.form['short'])
+    db[short] = link
+    message = "Associated " + short + " with: " + link
+    return message
+@app.route('/shorts/<short_link>', methods=['GET'])
+def handle_short_get(short_link):
+    # implement GET logic.
+    short = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + str(short_link)
+    destination = db.get(short) #needs to return 404
+    if (destination == None):
+        resp = flask.make_response("404: No url is associated with this short url",404);
+        return resp
+    app.logger.debug("Redirecting to " + destination)
+    corrected_dest = correctURL(destination)
+    return flask.redirect(corrected_dest)
 
+def correctURL(destination):
+    if (destination[0:8] == "https://"):
+        return destination
+    elif (destination[0:7] == "http://"):
+        return destination
+    return "http://" + destination
 
 if __name__ == "__main__":
     app.run(port=int(environ['FLASK_PORT']))

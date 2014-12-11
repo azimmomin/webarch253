@@ -1,141 +1,70 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../static/css/default.css">
-	<title>Audio.ly</title>
-    <style>
-        body {background-color:black}
-    </style>
-</head>
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8">
+		<title>SHoRT</title>
+		<link rel="stylesheet" href="default.css">
+	</head>
+	<body>
+		<!--
+		<div class="container">
+			Hello {{ name }}
+		</div>
+		-->
+		<div id="displayContainer">
+			<h1>SHoRT</h1>
+			<h3>For the lazy, by the lazy</h3>
+			<form id="user-input" method="post"
+			      action="http://people.ischool.berkeley.edu/~azimmomin/server/shorts">
+				<!-- Long link text field -->
+				<label> Enter link you would like to shorten </label>
+				<br>
+				<input type=text id="long-link" name="url" required>
+				<br>
+				<br>
+				<!-- Short link text field -->
+				<label> Enter what you want above link to shorten to </label>
+				<br>
+				<input type=text id="short-link" name="short" required onkeyup="validate()">
+				<!--
+				<input type=button id="random" value= Random>
+				-->
+				<br>
+				<br>
+				<input type=submit value="Shorten!" id="submitBtn">
+				<br>
+			</form>
+			<!--<div id="successMsgContainer">
+			</div> -->
+			<div id="explanationContainer">
+				<p> If you don't know what any of this is, checkout
+				<a href="https://bitly.com" target="_blank">bitly</a> <br>
+				We basically do the same thing!
+			</p>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script>
+				// Checks if input for short-link is correct.
+				function validate() {
+					var regex = "^[a-zA-Z]+$"
+					var val = document.getElementById("short-link").value;
+					// input is correct, re-enable submit button.
+					if (val.match(regex) != null) {
+						$('input[type=submit]').removeAttr('disabled');
+					} else {
+						$('input[type=submit]').attr('disabled', 'disabled');
+					}
+				}
+				// This is where we will send the POST request to Flask.
+				function sendPostReq() {
 
-<body>
-
-<center><h1><font face="helvetica, arial, verdana" color="2ecc71">Audio.ly</font></h1>
-
-<!-- Search Bar -->
-<div id="search">
-	<form id="searchbar1">
-	    <input id="searchbar" type="text" class="textinput" required name="q" size="40" maxlength="120">
-        <input type="submit" value="search" class="submitbutton">
-	</form>
-</div>
-
-<!-- Shortened URL Input -->
-<!--<div id="shorturl">
-	<form id="shortened-url">
-        <p>Share with your link: </p>
-	    <input id="short-url" type="text" class="textinput" name="short" onkeyup="validate()" size="21">
-        <input type="submit" value="shorten" class="submitbutton">
-	</form>
-</div> -->
-
-<!-- MP3 Player -->
-<div id="mp3player">
-    <audio id="mp3audio" src="" type="audio/mpeg" onended="getNextSong('false')" >
-    </audio>
-    <div class="songInfo"></div>
-	<div class="loader">
-	</div>
-	<div class="controls">
-		<a id="play" onClick="play()" href="#"><img src="http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-black/bfa/bfa_play/bfa_play_flat-circle-white-on-black_128x128.png" alt="Play Icon" width="30" height="30"><span>Play</span></a>
-		<a id="pause" onClick="pause()" href="#"><img src="http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-black/foundation/foundation_pause/foundation_pause_flat-circle-white-on-black_128x128.png" alt="Pause Icon" width="30" height="30"><span>Pause</span></a>
-		<a id="next" onClick="getNextSong('true')" href="#"><img src="http://cdn.mysitemyway.com/icons-watermarks/flat-circle-white-on-black/raphael/raphael_button-fast-forward/raphael_button-fast-forward_flat-circle-white-on-black_128x128.png" alt="Next Icon" width="30" height="30"><span>Next</span></a>
-	</div>
-</div>
-
-<div id="urlDisplay">
-</div>
-
-</center>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-	var isPaused = false;
-	var short_link = "";
-
-	/* Use this function to send POST requests to server when a new search is typed in. */
-	function searchBtnClick() {
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				resp = xmlhttp.responseText.split(",");
-				link = resp[0];
-				audio = resp[1];
-				short_link = link;
-				document.getElementById("urlDisplay").innerHTML = "Share your link with: " + link;
-				document.getElementById("mp3audio").src = audio;
-				name = audio.split('.');
-				document.getElementById("songInfo").innerHTML = name[0];
-				document.getElementById("mp3audio").play();
-			}
-		}
-		search = document.getElementById("searchbar").value;
-		new_link = generateShort();
-		document.getElementById("urlDisplay").innerHTML = "Share your link with: " + new_link;
-		req = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts?search=" + search + "&short=" + new_link;
-		xmlhttp.open("POST", req, true);
-		xmlhttp.send();
-		return false;
-	}
-	/* Use this to get the next song when a song is skipped or ended.*/
-	function getNextSong(skipped) {
-		if (short_link == "") {
-			return false;
-		}
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function() {
-			if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-				audio = xmlhttp.responseText;
-				document.getElementById("mp3").src = audio;
-				name = audio.split(".");
-				document.getElementById("songInfo").innerHTML = name[0];
-				document.getElementById("mp3").play();
-			}
-		}
-		req = "http://people.ischool.berkeley.edu/~azimmomin/server/shorts/" + shortLink + "?skipped=" + skipped;
-		xmlhttp.open("GET", req, true);
-		xmlhttp.send();
-		return false;
-	}
-
-	function play() {
-		audio = document.getElementById('mp3audio');
-		if (isPaused && audio.src != "") {
-			audio.play();
-			isPaused = false;
-		}
-	}
-
-	function pause() {
-		audio = document.getElementById('mp3audio');
-		if (!isPaused && audio.src != "") {
-			audio.pause();
-			isPaused = true;
-		}
-	}
-
-	function generateShort() {
-		var short_val = '';
-		var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-		for (var i = 1; i < 10; i += 1) {
-			short_val += Math.floor(Math.random() * possible.length());
-		}
-		return short_val;
-	}
-
-	$(document).ready(function() {
-		// initially disable submit button until we get correct input.
-		//$('input[type=submit]').attr('disabled', 'disabled');
-		$("#searchbar1").submit(searchBtnClick);
-	});
-</script>
-</body>
+				}
+				$(document).ready(function() {
+					// initially disable submit button until we get correct input.
+					$('input[type=submit]').attr('disabled', 'disabled');
+					$("#user-input").submit(sendPostReq);
+				});
+			</script>
+			</div>
+		</div>
+	</body>
 </html>

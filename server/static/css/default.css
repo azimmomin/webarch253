@@ -1,68 +1,36 @@
-#mp3player {
-	background-color:#000000;
-	border-radius:10px;
-	color:#000000;
-    padding-top:43px;
-    padding-bottom:50px;
-	font-weight:bold;
-	width:300px;
+body {
+	/* load and configure background image */
+	background-color: orange;
+	-webkit-background-size: 100% auto;
+	-moz-background-size: 100% auto;
+	-ms-background-size: 100% auto;
+	-o-background-size: 100% auto;
+	background-size: 100% auto;
+	text-align: left;
+	color:black;
 }
 
-#mp3player .loader {
-	border:1px solid #2ecc71;
-	height:3px;
-	margin:10px 0px
+h1 {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	margin-left: 0px;
 }
 
-#mp3player .controls a {
-    display:inline-block;
-	width:33px;
-	height:33px;
-	margin:0px 14px;
-	overflow:hidden;
+h3 {
+	font-style: italic;
+	margin-top: 0px;
+	margin-bottom: 15px;
+	margin-left: 0px;
 }
 
-#mp3player .controls a:hover {
-	background-color:#2ecc71;
+#submitBtn {
+    font-weight: bold;
 }
-
-#searchbar1{
-    padding-top:22px;
-    padding-bottom:15px;
-    background:#000000;
+#displayContainer {
+	width: 780px;
+	margin: 0 auto;
+	text-align: center;
 }
-
-#shortened-url{
-    padding-bottom:22px;
-}
-
-#urlDisplay {
-}
-
-.textinput{
-    margin: 0;
-    padding: 5px 10px;
-    font-size:14px;
-    border:1px solid #2ecc71; border-right:0px;
-    border-top-left-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-}
-
-.submitbutton {
-    margin: 0;
-    padding: 5px 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size:14px;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    color: #ffffff;
-    border: solid 1px #2ecc71; border-right:0px;
-    background: #2ecc71;
-   border-top-right-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
-}
-
-.submitbutton:hover {
-    background: #27ae60;
+#explanationContainer {
+    font-style: italic;
 }
